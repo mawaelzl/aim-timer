@@ -33,14 +33,14 @@ const SetDiv = styled.div`
   left: 30px;
   display: block;
   text-align: center;
-  filter: drop-shadow(3px 4px 5px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
 `;
 
 const TimeDisplay = styled.span`
   color: white;
   font-family: Roboto, serif;
   font-size: x-large;
-  font-weight: 900;
+  font-weight: bolder;
 `;
 
 const App: FC = () => {
