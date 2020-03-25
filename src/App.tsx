@@ -5,8 +5,6 @@ import { FC, useState } from "react";
 import NoSleep from "nosleep.js";
 import { DownArrow, UpArrow } from "./Arrows";
 
-const targetShadow = "drop-shadow(6px 10px 8px rgba(0,0,0,0.4))";
-
 const StartButton = styled.div`
   width: 100%;
   height: 100vh;
@@ -25,7 +23,7 @@ const TargetImage = styled.img`
   position: relative;
   right: -50%;
   height: 100%;
-  filter: ${targetShadow};
+  filter: drop-shadow(6px 10px 8px rgba(0,0,0,0.4));
   transition: filter 1s linear;
 `;
 
