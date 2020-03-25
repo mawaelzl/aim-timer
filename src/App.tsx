@@ -30,11 +30,12 @@ const TargetImage = styled.img`
 `;
 
 const SetDiv = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 30px;
   display: block;
-  height: 130px;
-  width: 100%;
   text-align: center;
-  filter: drop-shadow(4px 5px 3px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(3px 4px 5px rgba(0, 0, 0, 0.8));
 `;
 
 const TimeDisplay = styled.span`
@@ -58,7 +59,7 @@ const App: FC = () => {
   };
 
   const handleTimeDecrease = () => {
-    setWaitTime(prev => prev > 0 ? prev - 1 : 0);
+    setWaitTime(prev => (prev > 0 ? prev - 1 : 0));
   };
 
   const handleClick = () => {
@@ -94,24 +95,10 @@ const App: FC = () => {
           />
         </ImageContainer>
       </StartButton>
-      <SetDiv style={{ filter: timed ? "opacity(0.4)" : "" }}>
-        <UpArrow
-          {...(timed
-            ? {
-                onClick: () => {},
-                style: { cursor: "not-allowed" }
-              }
-            : { onClick: handleTimeIncrease, style: { cursor: "pointer" } })}
-        />
+      <SetDiv>
+        <UpArrow onClick={handleTimeIncrease} />
         <TimeDisplay>{waitTime}</TimeDisplay>
-        <DownArrow
-          {...(timed
-            ? {
-                onClick: () => {},
-                style: { cursor: "not-allowed" }
-              }
-            : { onClick: handleTimeDecrease, style: { cursor: "pointer" } })}
-        />
+        <DownArrow onClick={handleTimeDecrease} />
       </SetDiv>
     </div>
   );

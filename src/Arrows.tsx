@@ -6,6 +6,7 @@ const ArrowContainer = styled.div`
   width: 40px;
   height: 40px;
   margin: auto;
+  cursor: pointer;
 `;
 
 export const DownArrow: FC<{ onClick: () => void; style?: CSSProperties }> = ({
