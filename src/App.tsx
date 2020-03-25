@@ -17,13 +17,13 @@ const ImageContainer = styled.div`
   position: relative;
   float: right;
   right: 50%;
+  height: 100%;
 `;
 
 const TargetImage = styled.img`
   position: relative;
   right: -50%;
   height: 100%;
-  width: 100%;
   filter: ${targetShadow};
   transition: filter 1s linear;
 `;
@@ -35,7 +35,7 @@ const SetDiv = styled.div`
 `;
 
 const SetTextField = styled.input`
-  width: 200px;
+  width: 100px;
   height: 50px;
   background-color: transparent;
   border: 2px solid white;
