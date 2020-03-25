@@ -23,7 +23,7 @@ const TargetImage = styled.img`
   position: relative;
   right: -50%;
   height: 100%;
-  filter: drop-shadow(6px 10px 8px rgba(0,0,0,0.4));
+  filter: drop-shadow(6px 10px 8px rgba(0, 0, 0, 0.4));
   transition: filter 1s linear;
 `;
 
@@ -39,13 +39,34 @@ const SetDiv = styled.div`
 const TimeDisplay = styled.span`
   color: white;
   font-family: Roboto, serif;
-  font-size: x-large;
+  font-size: 2rem;
   font-weight: bolder;
+`;
+
+const RemainingDiv = styled.div`
+  display: grid;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+`;
+
+const RemainingDisplay = styled.span`
+  color: white;
+  font-family: Roboto, serif;
+  font-size: 12rem;
+  font-weight: bolder;
+  height: min-content;
 `;
 
 const App: FC = () => {
   const noSleep = new NoSleep();
   const [waitTime, setWaitTime] = useState(7);
+  const [remainingTime, setRemainingTime] = useState(0);
   const [timed, setTimed] = useState(false);
   let isFirstClick = true;
   const beep = new Audio(
@@ -62,6 +83,16 @@ const App: FC = () => {
 
   const handleClick = () => {
     setTimed(true);
+    setRemainingTime(waitTime);
+
+    const interval = setInterval(() => {
+      setRemainingTime(prev => {
+        if (prev === 1) {
+          clearInterval(interval);
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
     if (isFirstClick) {
       noSleep.enable();
@@ -98,6 +129,9 @@ const App: FC = () => {
         <TimeDisplay>{waitTime}</TimeDisplay>
         <DownArrow onClick={handleTimeDecrease} />
       </SetDiv>
+      <RemainingDiv>
+        <RemainingDisplay>{remainingTime || null}</RemainingDisplay>
+      </RemainingDiv>
     </div>
   );
 };
