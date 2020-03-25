@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { FC, useState } from "react";
 import NoSleep from "nosleep.js";
 
+const targetShadow = "drop-shadow(6px 10px 8px rgba(0,0,0,0.4))";
+
 const StartButton = styled.div`
   width: 100%;
   height: 100vh;
@@ -22,6 +24,7 @@ const TargetImage = styled.img`
   right: -50%;
   height: 100%;
   width: 100%;
+  filter: ${targetShadow};
   transition: filter 1s linear;
 `;
 
@@ -42,6 +45,7 @@ const SetTextField = styled.input`
   text-align: center;
   font-size: large;
   font-weight: 900;
+  filter: drop-shadow(3px 4px 3px rgba(0,0,0,0.4));
 `;
 
 const App: FC = () => {
@@ -61,14 +65,14 @@ const App: FC = () => {
 
     button.style.setProperty("cursor", "not-allowed");
     button.onclick = null;
-    image.style.setProperty("filter", "blur(5px)");
+    image.style.setProperty("filter", `opacity(0.5) ${targetShadow}`);
     input.disabled = true;
 
     timeout = setTimeout(async () => {
       await beep.play();
       button.style.setProperty("cursor", "pointer");
       button.onclick = handleClick;
-      image.style.setProperty("filter", "");
+      image.style.setProperty("filter", targetShadow);
       input.disabled = false;
     }, (waitTime + Math.random() * 5) * 1000);
   };
@@ -90,7 +94,6 @@ const App: FC = () => {
           value={waitTime}
           onChange={event => setWaitTime(parseInt(event.target.value))}
           id="time-input"
-          disabled
         />
       </SetDiv>
     </div>
