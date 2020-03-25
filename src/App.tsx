@@ -30,6 +30,7 @@ const TargetImage = styled.img`
 
 const SetDiv = styled.div`
   height: 10vh;
+  min-height: 50px;
   width: 100%;
   text-align: center;
 `;
@@ -45,7 +46,17 @@ const SetTextField = styled.input`
   text-align: center;
   font-size: large;
   font-weight: 900;
-  filter: drop-shadow(3px 4px 3px rgba(0,0,0,0.4));
+  filter: drop-shadow(3px 4px 3px rgba(0, 0, 0, 0.4));
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 const App: FC = () => {
